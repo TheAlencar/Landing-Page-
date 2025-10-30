@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #f2f2f2;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  padding: 60px 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #ffcc00;
+  margin-bottom: 10px;
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+h2 {
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 20px;
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+.btn {
+  background: #ffcc00;
+  color: #222;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+.btn:hover {
+  background: #ffaa00;
+}
+
+section {
+  padding: 40px 20px;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+li:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+footer {
+  position: relative;
+  background: #111;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  color: #aaa;
+  width: 100%;
+  /* Ocupa a largura total */
+  margin-top: 50px;
+  /* Dá um bom respiro entre o conteúdo final e o footer */
+}
+
+/* ===== GALERIA DE JOGOS (Com ajustes para logos) ===== */
+#galeria {
+  padding: 40px 20px;
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+#galeria h2 {
+  font-size: 1.8rem;
+  color: #ffcc00;
+  margin-bottom: 25px;
+}
+
+.jogos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.jogo-card {
+  /* Cor de fundo mais sólida para o card, como no seu mockup */
+  background: #2B395D;
+  border-radius: 15px;
+  padding: 0;
+
+  /* Remove altura fixa para o conteúdo se ajustar melhor */
+  width: 220px;
+  height: auto;
+
+  /* Adiciona um espaço vertical maior para o visual ficar mais limpo */
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.jogo-card img {
+  /* Tamanho fixo e quadrado para o logo */
+  width: 100%;
+  height: 140px;
+
+  border-radius: 15px 15px 0 0;
+
+  /* Garante que a imagem preencha o espaço sem distorcer (para logos) */
+  object-fit: contain;
+
+  /* Centraliza o bloco da imagem */
+  display: block;
+  margin: 0;
+
+  /* Sombra leve na imagem para destacá-la */
+  box-shadow: none;
+
+  transition: transform 0.3s ease;
+}
+
+
+.jogo-card p {
+  padding: 15px;
+  margin: 0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* animação no hover */
+.jogo-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  /* Menos agressivo que o -8px e scale(1.05) */
+  background: #3c4f7a;
+  /* Levemente mais claro no hover */
+}
+
+/* Remove a animação da imagem se ela for um logo simples, mas pode manter */
+.jogo-card:hover img {
+  transform: none;
+}
+
+/* Estilo para as descrições ocultas */
+.descricao-beneficio {
+  /* Oculta o conteúdo */
+  max-height: 0;
+  overflow: hidden;
+  /* Para uma transição suave */
+  transition: max-height 0.3 ease-out, padding 0.3s ease-out;
+  padding-left: 10px;
+  /* Um pequeno recuo */
+  padding-right: 10px;
+  color: #ccc;
+  /* Uma cor mais sutil */
+  margin-top: 5px;
+  margin-bottom: 0 !important;
+  border-radius: 5px;
+}
+
+/* Estilo para quando a descrição estiver visível (expandida) */
+.beneficio-item.ativo .descricao-beneficio {
+  /* Define uma altura máxima grande o suficiente para o texto */
+  max-height: 200px;
+  /* Ajuste se o seu texto for muito longo */
+  /* Adiciona padding para o texto ter espaço */
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Opcional: Estilo de cursor para indicar que o item é clicável */
+.beneficio-item {
+  cursor: pointer;
+  user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+/* Opcional: Adicionar algum destaque visual ao item clicado */
+.beneficio-item.ativo strong {
+  color: #4CAF50;
+  /* Uma cor de destaque */
+}
+
+/* Estilo para a lista de vídeos dentro do modal */
+#videoListTitle {
+  color: #ffcc00;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.video-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s;
+}
+
+.video-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.video-list-item .video-info {
+  flex-grow: 1;
+}
+
+.video-list-item h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.video-list-item p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+/* Estilo do modal (o fundo escuro que aparece) */
+.modal {
+    display: none; /* Mantém oculto por padrão (você deve ter um JS para 'display: flex') */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite rolar se o conteúdo for grande */
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo bem escuro */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo do conteúdo do modal (a caixa que contém o vídeo e a lista) */
+.modal-content {
+    background-color: #0f172a; /* Cor de fundo escura (da sua body) */
+    margin: 5% auto; /* Centraliza verticalmente (ajuste se precisar de mais espaço no topo) */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 900px; /* Limite de largura para melhor leitura */
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Garante que o player de vídeo tenha um bom aspecto e espaço */
+.video-container {
+    position: relative;
+    width: 100%;
+    /* Define o aspecto 16:9 para o iframe */
+    padding-bottom: 56.25%; /* (9 / 16) * 100% */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 25px; /* ESPAÇO IMPORTANTE: Afasta o player da lista */
+    border-radius: 5px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Título da Lista de Vídeos */
+#videoListTitle {
+    color: #ffcc00;
+    text-align: left;
+    margin-top: 0; /* Remova margem extra, pois o .video-container já empurrou */
+    margin-bottom: 15px; /* Espaço entre o título e a lista */
+    font-size: 1.3rem;
+    padding-top: 10px; /* Pequeno padding para respiro */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Lista de Vídeos (Contêiner) */
+#videoList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Ícone de Fechar */
+.close-btn {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1; /* Garante que o 'x' não ocupe muita altura */
+    z-index: 1001;   /* Garante que fique acima de tudo, inclusive da borda */
+/* Opcional: Adicionar um fundo para destacar */
+    background-color: #ffcc00; /* Fundo amarelo de destaque */
+    color: #111; /* Cor do X preta */
+    border-radius: 50%; /* Transforma em círculo */
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px; /* Centraliza o X */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    user-select: none;
+  /* Remove a capacidade de seleção de texto (e o cursor) */
+  -webkit-user-select: none;
+  /* Para navegadores WebKit (Chrome, Safari) */
+  -moz-user-select: none;
+  /* Para navegadores Mozilla (Firefox) */
+  -ms-user-select: none;
+  /* Para navegadores da Microsoft (Edge/IE) */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #ffcc00;
+}
+
+/* Torna os cards posicionados para o CTA */
+.jogo-card {
+    position: relative; /* Essencial para o posicionamento do CTA */
+    overflow: hidden; /* Garante que o CTA não vaze se for maior */
+    cursor: pointer; /* Indica que o elemento é clicável */
+    /* Adicione uma sombra ou transição para dar mais feedback visual */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jogo-card:hover {
+    transform: scale(1.03); /* Efeito sutil de zoom ao passar o mouse */
+    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4); /* Sombra amarela de destaque */
+}
+
+/* Estilizando o CTA em si */
+.card-cta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #ffc107; /* Cor amarela do design original */
+    color: #1a237e; /* Cor escura para contraste */
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* Começa escondido, fora da caixa */
+    transform: translateY(100%); 
+    transition: transform 0.3s ease-out;
+}
+
+/* Faz o CTA deslizar para dentro quando o mouse passa sobre o card */
+.jogo-card:hover .card-cta {
+    transform: translateY(0);
+}
+
+/* Garante que o texto do jogo fique visível, caso o CTA o cubra */
+.jogo-card p {
+    position: relative;
+    z-index: 2; /* Deixa o texto do jogo acima da imagem */
+    margin-bottom: 50px; /* Cria espaço para o CTA deslizar sem cobrir o nome */
+}
