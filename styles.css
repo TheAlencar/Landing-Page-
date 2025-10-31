@@ -103,7 +103,7 @@ ul {
   list-style: none;
   display: grid;
   gap: 10px;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   margin-top: 10px;
 }
@@ -116,7 +116,7 @@ li {
 }
 
 li:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-5px) scale(1.02);
   background: rgba(255, 255, 255, 0.15);
 }
 
@@ -241,6 +241,7 @@ footer {
   margin-top: 5px;
   margin-bottom: 0 !important;
   border-radius: 5px;
+  line-height: 1.6; /* Deixa o texto mais espaçado para melhor leitura */
 }
 
 /* Estilo para quando a descrição estiver visível (expandida) */
@@ -255,6 +256,7 @@ footer {
 
 /* Opcional: Estilo de cursor para indicar que o item é clicável */
 .beneficio-item {
+  font-size: 1.15rem;
   cursor: pointer;
   user-select: none;
   /* Remove a capacidade de seleção de texto (e o cursor) */

@@ -1,14 +1,16 @@
 // 🚨 CORREÇÃO CRÍTICA: Envolvemos todo o código para garantir que o HTML seja carregado primeiro.
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // (Bloco 1) Lógica de Rolagem
     const btnRolar = document.querySelector('.btn');
-    
+
     // Verificação de segurança: Só tenta adicionar o evento se o elemento existir
-    if (btnRolar) { 
-        btnRolar.addEventListener('click', () => {
+    if (btnRolar) {
+        btnRolar.addEventListener('click', (event) => {
+            // ✅ ADICIONADO: Previne o comportamento padrão (ex: link #) antes de rolar
+            event.preventDefault();
             window.scrollTo({
-                top: document.querySelector('#galeria').offsetTop, 
+                top: document.querySelector('#galeria').offsetTop,
                 behavior: 'smooth'
             });
         });
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Percorre a lista de itens e adiciona um "ouvinte de evento" de clique a cada um
     itensBeneficio.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             this.classList.toggle('ativo');
         });
     });
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoPlayer = document.getElementById('videoPlayer');
     const videoListContainer = document.getElementById('videoList');
     const videoListTitle = document.getElementById('videoListTitle');
-    const ctaButtons = document.querySelectorAll('.card-cta'); 
+    const ctaButtons = document.querySelectorAll('.card-cta');
 
     // Dados dos vídeos (mantido do seu código)
     const VIDEOS_DO_JOGO = {
@@ -62,18 +64,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para fechar o modal (e parar o vídeo)
     function fecharModal() {
-        videoPlayer.src = ''; 
+        videoPlayer.src = '';
         modal.style.display = 'none';
     }
 
     // Eventos de Fechar Modal
     fecharBtn.addEventListener('click', fecharModal);
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         if (event.target == modal) {
             fecharModal();
         }
     });
-    document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && modal.style.display === 'block') {
             fecharModal();
         }
@@ -98,21 +100,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const thumbnailUrl = `https://img.youtube.com/vi/${video.id}/default.jpg`;
 
             listHTML += `
-                <div class="video-list-item" data-video-id="${video.id}">
-                    <img src="${thumbnailUrl}" alt="${video.title}" style="width: 60px; height: 45px; margin-right: 15px; border-radius: 3px;">
-                    <div class="video-info">
-                        <h4>${video.title}</h4>
-                        <p>Canal: ${video.channel}</p>
-                    </div>
-                </div>
-            `;
+                <div class="video-list-item" data-video-id="${video.id}">
+                    <img src="${thumbnailUrl}" alt="${video.title}" style="width: 60px; height: 45px; margin-right: 15px; border-radius: 3px;">
+                    <div class="video-info">
+                        <h4>${video.title}</h4>
+                        <p>Canal: ${video.channel}</p>
+                    </div>
+                </div>
+            `;
         });
 
         videoListContainer.innerHTML = listHTML;
-        
+
         // Adiciona evento de clique a cada item da nova lista
         document.querySelectorAll('.video-list-item').forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', function () {
                 const newVideoId = this.getAttribute('data-video-id');
                 loadVideo(newVideoId);
             });
@@ -124,10 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // LÓGICA DE ABERTURA DO MODAL (CARD PRINCIPAL)
     // ===================================
     jogoCards.forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
             // Pega o nome do jogo do <p> dentro do card
             const gameName = this.querySelector('p').textContent;
-            
+
             // Verificação de Segurança (caso o gameName não tenha vídeos)
             if (!VIDEOS_DO_JOGO[gameName] || VIDEOS_DO_JOGO[gameName].length === 0) {
                 console.warn(`Nenhum vídeo encontrado para ${gameName}.`);
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // 2. Gera e exibe a lista de vídeos
             videoListTitle.textContent = `Lista de Vídeos: ${gameName}`;
             generateVideoList(gameName);
-            
+
             // 3. Exibe o modal
             modal.style.display = 'block';
         });
@@ -153,16 +155,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
     ctaButtons.forEach(cta => {
         // TROCADO A DIV POR BUTTON NO HTML É O MELHOR A FAZER (VER PASSO 2)
-        cta.addEventListener('click', function(event) {
-            // MUITO IMPORTANTE: Impede que o clique suba para o card principal
-            event.stopPropagation();
+        cta.addEventListener('click', function (event) {
+            // ✅ CORREÇÃO CRÍTICA PARA MOBILE: Usa stopImmediatePropagation 
+            // para garantir que o evento do card pai (.jogo-card) não seja acionado.
+            event.stopImmediatePropagation();
+            // ✅ ADICIONADO: Previne qualquer comportamento padrão do elemento CTA
+            event.preventDefault();
 
             // Pega o elemento pai (.jogo-card)
             const parentCard = this.closest('.jogo-card');
-            
+
             // Pega a URL do atributo 'data-registration-url' do elemento pai
             const url = parentCard.getAttribute('data-registration-url');
-            
+
             if (url) {
                 // Redireciona para a página de cadastro em uma nova aba
                 window.open(url, '_blank');
@@ -170,5 +175,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-// 🚨 FIM DO DOMContentLoaded
+    // 🚨 FIM DO DOMContentLoaded
 });
