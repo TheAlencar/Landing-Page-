@@ -84,6 +84,7 @@ p {
   /* Para navegadores Mozilla (Firefox) */
   -ms-user-select: none;
   /* Para navegadores da Microsoft (Edge/IE) */
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -104,6 +105,7 @@ ul {
   gap: 10px;
   max-width: 400px;
   margin: 0 auto;
+  margin-top: 10px;
 }
 
 li {
