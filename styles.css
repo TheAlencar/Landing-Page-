@@ -12,10 +12,18 @@ body {
   color: #f2f2f2;
   text-align: center;
   min-height: 100vh;
+
+  /* 🟢 REINTRODUZIR O FLEXBOX para gerenciar o layout vertical (header/section/footer) */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  
+  /* 🟢 CORREÇÃO: Alinha os itens ao centro, mas não os restringe */
+  align-items: center; 
+  
+  /* 🟢 ADICIONADO: Garante que o body não restrinja o conteúdo horizontalmente */
+  width: 100%;
 }
+
 
 header {
   padding: 60px 20px;
@@ -83,7 +91,11 @@ p {
 }
 
 section {
-  padding: 40px 20px;
+ padding: 40px 20px;
+  width: 100%;
+  
+  /* 🟢 ADICIONADO: Garante que o bloco de seção ocupe toda a largura disponível. */
+  min-width: 100%
 }
 
 ul {
@@ -129,6 +141,7 @@ footer {
   /* Para navegadores Mozilla (Firefox) */
   -ms-user-select: none;
   /* Para navegadores da Microsoft (Edge/IE) */
+  width: 100%;
 }
 
 #galeria h2 {
@@ -142,6 +155,9 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
+  max-width: 720px;
+  /* 🟢 MANTIDO: Centraliza o grupo de cards de 720px */
+  margin: 0 auto;
 }
 
 .jogo-card {
@@ -156,7 +172,7 @@ footer {
 
   /* Adiciona um espaço vertical maior para o visual ficar mais limpo */
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 5px;
 
   transition: all 0.3s ease;
   cursor: pointer;
@@ -185,8 +201,10 @@ footer {
 
 
 .jogo-card p {
-  padding: 15px;
-  margin: 0;
+  position: relative;
+  padding: 10px;
+  margin: 0px;
+  margin-bottom: 15px;
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
@@ -295,91 +313,108 @@ footer {
 
 /* Estilo do modal (o fundo escuro que aparece) */
 .modal {
-    display: none; /* Mantém oculto por padrão (você deve ter um JS para 'display: flex') */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* Permite rolar se o conteúdo for grande */
-    background-color: rgba(0, 0, 0, 0.9); /* Fundo bem escuro */
-    justify-content: center;
-    align-items: center;
+  display: none;
+  /* Mantém oculto por padrão (você deve ter um JS para 'display: flex') */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* Permite rolar se o conteúdo for grande */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Fundo bem escuro */
+  justify-content: center;
+  align-items: center;
 }
 
 /* Estilo do conteúdo do modal (a caixa que contém o vídeo e a lista) */
 .modal-content {
-    background-color: #0f172a; /* Cor de fundo escura (da sua body) */
-    margin: 5% auto; /* Centraliza verticalmente (ajuste se precisar de mais espaço no topo) */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%;
-    max-width: 900px; /* Limite de largura para melhor leitura */
-    border-radius: 10px;
-    position: relative;
+  background-color: #0f172a;
+  /* Cor de fundo escura (da sua body) */
+  margin: 5% auto;
+  /* Centraliza verticalmente (ajuste se precisar de mais espaço no topo) */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 900px;
+  /* Limite de largura para melhor leitura */
+  border-radius: 10px;
+  position: relative;
 }
 
 /* Garante que o player de vídeo tenha um bom aspecto e espaço */
 .video-container {
-    position: relative;
-    width: 100%;
-    /* Define o aspecto 16:9 para o iframe */
-    padding-bottom: 56.25%; /* (9 / 16) * 100% */
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 25px; /* ESPAÇO IMPORTANTE: Afasta o player da lista */
-    border-radius: 5px;
+  position: relative;
+  width: 100%;
+  /* Define o aspecto 16:9 para o iframe */
+  padding-bottom: 56.25%;
+  /* (9 / 16) * 100% */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 25px;
+  /* ESPAÇO IMPORTANTE: Afasta o player da lista */
+  border-radius: 5px;
 }
 
 .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Título da Lista de Vídeos */
 #videoListTitle {
-    color: #ffcc00;
-    text-align: left;
-    margin-top: 0; /* Remova margem extra, pois o .video-container já empurrou */
-    margin-bottom: 15px; /* Espaço entre o título e a lista */
-    font-size: 1.3rem;
-    padding-top: 10px; /* Pequeno padding para respiro */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffcc00;
+  text-align: left;
+  margin-top: 0;
+  /* Remova margem extra, pois o .video-container já empurrou */
+  margin-bottom: 15px;
+  /* Espaço entre o título e a lista */
+  font-size: 1.3rem;
+  padding-top: 10px;
+  /* Pequeno padding para respiro */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Lista de Vídeos (Contêiner) */
 #videoList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* Ícone de Fechar */
 .close-btn {
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    cursor: pointer;
-    transition: color 0.3s;
-    line-height: 1; /* Garante que o 'x' não ocupe muita altura */
-    z-index: 1001;   /* Garante que fique acima de tudo, inclusive da borda */
-/* Opcional: Adicionar um fundo para destacar */
-    background-color: #ffcc00; /* Fundo amarelo de destaque */
-    color: #111; /* Cor do X preta */
-    border-radius: 50%; /* Transforma em círculo */
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px; /* Centraliza o X */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    user-select: none;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  cursor: pointer;
+  transition: color 0.3s;
+  line-height: 1;
+  /* Garante que o 'x' não ocupe muita altura */
+  z-index: 1001;
+  /* Garante que fique acima de tudo, inclusive da borda */
+  /* Opcional: Adicionar um fundo para destacar */
+  background-color: #ffcc00;
+  /* Fundo amarelo de destaque */
+  color: #111;
+  /* Cor do X preta */
+  border-radius: 50%;
+  /* Transforma em círculo */
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  /* Centraliza o X */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
   /* Remove a capacidade de seleção de texto (e o cursor) */
   -webkit-user-select: none;
   /* Para navegadores WebKit (Chrome, Safari) */
@@ -391,48 +426,57 @@ footer {
 
 .close-btn:hover,
 .close-btn:focus {
-    color: #ffcc00;
+  color: #ffcc00;
 }
 
 /* Torna os cards posicionados para o CTA */
 .jogo-card {
-    position: relative; /* Essencial para o posicionamento do CTA */
-    overflow: hidden; /* Garante que o CTA não vaze se for maior */
-    cursor: pointer; /* Indica que o elemento é clicável */
-    /* Adicione uma sombra ou transição para dar mais feedback visual */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  /* Essencial para o posicionamento do CTA */
+  overflow: hidden;
+  /* Garante que o CTA não vaze se for maior */
+  cursor: pointer;
+  /* Indica que o elemento é clicável */
+  /* Adicione uma sombra ou transição para dar mais feedback visual */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .jogo-card:hover {
-    transform: scale(1.03); /* Efeito sutil de zoom ao passar o mouse */
-    box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4); /* Sombra amarela de destaque */
+  transform: scale(1.03);
+  /* Efeito sutil de zoom ao passar o mouse */
+  box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4);
+  /* Sombra amarela de destaque */
 }
 
 /* Estilizando o CTA em si */
 .card-cta {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px 0;
-    background-color: #ffc107; /* Cor amarela do design original */
-    color: #1a237e; /* Cor escura para contraste */
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 1px;
-    /* Começa escondido, fora da caixa */
-    transform: translateY(100%); 
-    transition: transform 0.3s ease-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  background-color: #ffc107;
+  /* Cor amarela do design original */
+  color: #1a237e;
+  /* Cor escura para contraste */
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  /* Começa escondido, fora da caixa */
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
 }
 
 /* Faz o CTA deslizar para dentro quando o mouse passa sobre o card */
 .jogo-card:hover .card-cta {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 /* Garante que o texto do jogo fique visível, caso o CTA o cubra */
 .jogo-card p {
-    position: relative;
-    z-index: 2; /* Deixa o texto do jogo acima da imagem */
-    margin-bottom: 50px; /* Cria espaço para o CTA deslizar sem cobrir o nome */
+  position: relative;
+  z-index: 2;
+  /* Deixa o texto do jogo acima da imagem */
+  margin-bottom: 50px;
+  /* Cria espaço para o CTA deslizar sem cobrir o nome */
 }
