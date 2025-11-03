@@ -16,12 +16,15 @@ body {
   /* 🟢 REINTRODUZIR O FLEXBOX para gerenciar o layout vertical (header/section/footer) */
   display: flex;
   flex-direction: column;
-  
+
   /* 🟢 CORREÇÃO: Alinha os itens ao centro, mas não os restringe */
-  align-items: center; 
-  
+  align-items: center;
+
   /* 🟢 ADICIONADO: Garante que o body não restrinja o conteúdo horizontalmente */
   width: 100%;
+  min-height: 100vh;
+  /* 🟢 CORREÇÃO CRÍTICA: Garante que o body possa rolar se o conteúdo exceder 100% da altura da tela */
+  overflow-y: auto;
 }
 
 
@@ -92,27 +95,32 @@ p {
 }
 
 section {
- padding: 40px 20px;
+  padding: 40px 20px;
   width: 100%;
-  
-  /* 🟢 ADICIONADO: Garante que o bloco de seção ocupe toda a largura disponível. */
-  min-width: 100%
 }
 
 ul {
   list-style: none;
   display: grid;
   gap: 10px;
-  max-width: 500px;
+  max-width: 95%;
   margin: 0 auto;
   margin-top: 10px;
 }
 
 li {
+  /* Mantenha o estilo de fundo e borda... */
   background: rgba(255, 255, 255, 0.05);
-  padding: 8px 10px;
+  /* Ajuste o padding: 15px em cima/baixo, 10px nas laterais */
+  padding: 15px 10px;
   border-radius: 10px;
-  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  li {
+    /* Reduza o padding lateral para liberar espaço para o texto */
+    padding: 15px 10px;
+  }
 }
 
 li:hover {
@@ -128,8 +136,9 @@ footer {
   color: #aaa;
   width: 100%;
   /* Ocupa a largura total */
-  margin-top: 50px;
+  margin-top: 80px;
   /* Dá um bom respiro entre o conteúdo final e o footer */
+  padding-bottom: 25px;
 }
 
 /* ===== GALERIA DE JOGOS (Com ajustes para logos) ===== */
@@ -233,21 +242,24 @@ footer {
   overflow: hidden;
   /* Para uma transição suave */
   transition: max-height 0.3 ease-out, padding 0.3s ease-out;
-  padding-left: 10px;
+  padding-left: 5px;
+  word-wrap: break-word;
+  white-space: normal;
   /* Um pequeno recuo */
-  padding-right: 10px;
+  padding-right: 5px;
   color: #ccc;
   /* Uma cor mais sutil */
   margin-top: 5px;
   margin-bottom: 0 !important;
   border-radius: 5px;
-  line-height: 1.6; /* Deixa o texto mais espaçado para melhor leitura */
+  line-height: 1.6;
+  /* Deixa o texto mais espaçado para melhor leitura */
 }
 
 /* Estilo para quando a descrição estiver visível (expandida) */
 .beneficio-item.ativo .descricao-beneficio {
   /* Define uma altura máxima grande o suficiente para o texto */
-  max-height: 200px;
+  max-height: 500px;
   /* Ajuste se o seu texto for muito longo */
   /* Adiciona padding para o texto ter espaço */
   padding-top: 10px;
@@ -330,7 +342,11 @@ footer {
   background-color: rgba(0, 0, 0, 0.9);
   /* Fundo bem escuro */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  /* Permite rolar o modal se for maior que a tela */
+  padding-top: 20px;
+  padding-bottom: 2opx;
 }
 
 /* Estilo do conteúdo do modal (a caixa que contém o vídeo e a lista) */
@@ -346,6 +362,8 @@ footer {
   /* Limite de largura para melhor leitura */
   border-radius: 10px;
   position: relative;
+  /* 🟢 AJUSTADO: Usa margin auto horizontal, mas permite que o topo seja ajustado pelo padding do modal */
+  margin: 0 auto;
 }
 
 /* Garante que o player de vídeo tenha um bom aspecto e espaço */
@@ -483,4 +501,25 @@ footer {
   /* Deixa o texto do jogo acima da imagem */
   margin-bottom: 50px;
   /* Cria espaço para o CTA deslizar sem cobrir o nome */
+}
+
+/* 🟢 AÇÃO CRÍTICA: Exibe o botão mobile */
+.mobile-cta-wrapper {
+  display: none;
+  /* Garante que não apareça por padrão */
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  /* Sem padding no wrapper para controle total pelo media query */
+}
+
+/* Estiliza o botão para ter mais impacto no mobile */
+.mobile-cta {
+  width: 100%;
+  /* Ocupa a largura total para fácil clique */
+  font-size: 1.1rem;
+  padding: 15px 25px;
+  /* Deixa o botão mais alto */
+  /* Opcional: Adiciona um efeito de sombra forte para destacar */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 10px #ffcc00;
 }
