@@ -503,23 +503,40 @@ footer {
   /* Cria espaço para o CTA deslizar sem cobrir o nome */
 }
 
-/* 🟢 AÇÃO CRÍTICA: Exibe o botão mobile */
+/* 1. Oculta o novo botão mobile por padrão (para desktop) */
 .mobile-cta-wrapper {
   display: none;
-  /* Garante que não apareça por padrão */
   width: 100%;
   text-align: center;
-  padding: 0;
-  /* Sem padding no wrapper para controle total pelo media query */
+  padding: 20px 0;
 }
 
-/* Estiliza o botão para ter mais impacto no mobile */
-.mobile-cta {
-  width: 100%;
-  /* Ocupa a largura total para fácil clique */
-  font-size: 1.1rem;
-  padding: 15px 25px;
-  /* Deixa o botão mais alto */
-  /* Opcional: Adiciona um efeito de sombra forte para destacar */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 10px #ffcc00;
+/* 2. Estilize o botão principal do header para desktop (opcional, se não existir) */
+/* .desktop-cta {
+    display: inline-block;
+} */
+
+/* 3. Aplica regras ESPECÍFICAS para MOBILE */
+@media (max-width: 600px) {
+
+  /* 🟢 AÇÃO CRÍTICA: Exibe o botão mobile */
+  .mobile-cta-wrapper {
+    display: block;
+    /* Adiciona um bom espaço para destaque */
+    padding: 25px 20px;
+    /* Garante que o botão mobile fique acima dos outros elementos se precisar de destaque */
+    z-index: 5;
+  }
+
+  /* Opcional: Oculta o botão de CTA que estava no header, se ele for redundante no mobile */
+  /* .desktop-cta {
+        display: none;
+    } */
+
+  /* Garante que o botão mobile preencha a largura para máximo impacto */
+  .mobile-cta {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 15px 25px;
+  }
 }
