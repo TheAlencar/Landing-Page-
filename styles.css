@@ -519,24 +519,40 @@ footer {
 /* 3. Aplica regras ESPECÍFICAS para MOBILE */
 @media (max-width: 600px) {
 
-  /* 🟢 AÇÃO CRÍTICA: Exibe o botão mobile */
-  .mobile-cta-wrapper {
-    display: block;
-    /* Adiciona um bom espaço para destaque */
-    padding: 25px 20px;
-    /* Garante que o botão mobile fique acima dos outros elementos se precisar de destaque */
-    z-index: 5;
-  }
+    /* 🟢 AÇÃO CRÍTICA 1: Exibe o botão principal mobile (do header) */
+    .mobile-cta-wrapper {
+        display: block;
+        padding: 25px 20px;
+        z-index: 5;
+    }
 
-  /* Opcional: Oculta o botão de CTA que estava no header, se ele for redundante no mobile */
-  /* .desktop-cta {
-        display: none;
-    } */
+    /* Garante que o botão mobile preencha a largura para máximo impacto */
+    .mobile-cta {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 15px 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 10px #ffcc00; /* Mantendo a sombra que sugeri */
+    }
+    
+    /* ================================================== */
+    /* 🟢 NOVAS REGRAS PARA O CTA ABAIXO DE CADA JOGO */
+    /* ================================================== */
 
-  /* Garante que o botão mobile preencha a largura para máximo impacto */
-  .mobile-cta {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 15px 25px;
-  }
+    /* 🟢 AÇÃO CRÍTICA 2: Torna o botão do Card (.card-cta) visível permanentemente */
+    .jogo-card .card-cta {
+        /* Remove o transform que o esconde no desktop (o transform: translateY(100%);) */
+        transform: translateY(0); 
+    }
+
+    /* 🟢 AÇÃO CRÍTICA 3: Ajusta o espaçamento do parágrafo */
+    .jogo-card p {
+        /* A margem original de 50px era para dar espaço para o slide. Reduzindo. */
+        margin-bottom: 20px; 
+    }
+
+    /* 🟢 AÇÃO CRÍTICA 4: Ajusta o espaçamento final do card */
+    .jogo-card {
+        /* Adiciona um padding inferior maior para dar respiro ao botão fixo */
+        padding-bottom: 25px; 
+    }
 }
